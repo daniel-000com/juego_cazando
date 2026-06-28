@@ -15,7 +15,6 @@ let tiempo = 10
 let intervaloTiempo ;
 
 function iniciarJuego(){
-    tiempo;
     graficarGato();
     graficarComida();
     restarTiempo();
@@ -73,7 +72,11 @@ function detectarColicion(){
         gatoY+ALTURA_GATO>comidaY && gatoY < comidaY+ALTURA_COMIDA ){
         aparecerComida();
         puntaje=puntaje +1;
-        mostrarSpam("puntos",puntaje);  
+        mostrarSpam("puntos",puntaje); 
+        if (puntos >= 6)
+        limpiarCanva();
+        terminarJuego("¡Ganaste! Atrapaste 6 comidas.");
+        return; 
         }
 }
 
@@ -94,5 +97,13 @@ function actualizarPantalla(){
 function restarTiempo(){
     tiempo--;
         mostrarSpam("tiempo",tiempo);
+        if (tiempo <= 0) {
+         clearInterval(intervaloTiempo); 
+         alert("¡GAME OVER! Puntos obtenidos: " + puntos);
+    }
         
+}
+function terminarJuego(mensaje) {
+clearInterval(intervaloTiempo);
+alert(mensaje);
 }
