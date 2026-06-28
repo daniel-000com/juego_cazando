@@ -10,6 +10,7 @@ let gatoX =canvas.height/2-40;
 let gatoY =canvas.height/2-40;
 let comidaX = 0
 let comidaY = 0
+let puntaje = 0
 
 function iniciarJuego(){
     graficarGato();
@@ -43,42 +44,45 @@ function limpiarCanva() {
 
 function moverIzquierda(){
     gatoX = gatoX -10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-    detectarColicion();
+    actualizarPantalla();
 }
 
 function moverDerecha(){
     gatoX = gatoX +10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-    detectarColicion();
+    actualizarPantalla()
 }
 
 function moverArriba(){
     gatoY = gatoY -10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-    detectarColicion();
+    actualizarPantalla();
 }
 
 function moverAbajo(){
     gatoY = gatoY +10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-    detectarColicion();
+    actualizarPantalla();
 }
 
 function detectarColicion(){
     if (
         gatoX+ANCHO_GATO > comidaX && gatoX < comidaX+ANCHO_COMIDA &&
         gatoY+ALTURA_GATO>comidaY && gatoY < comidaY+ALTURA_COMIDA ){
+        aparecerComida();
+        puntaje=puntaje +1;
+        mostrarSpam("puntos",puntaje);
           alert("coliocion detectada!!")  
         }
-        
-    
+}
+
+function aparecerComida(){
+    comidaX=generaAleatorio(0,canvas.width-ANCHO_COMIDA);
+    comidaY=generaAleatorio(canvas.height-ALTURA_COMIDA,0);
+    actualizarPantalla();
+}
+
+function actualizarPantalla(){
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
+    detectarColicion();
+
 }
