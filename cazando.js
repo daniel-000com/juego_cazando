@@ -6,8 +6,8 @@ const ALTURA_GATO =80;
 const ANCHO_GATO =80;
 const ALTURA_COMIDA =60;
 const ANCHO_COMIDA =60;
-let gatoX =0
-let gatoY =0
+let gatoX =canvas.height/2-40;
+let gatoY =canvas.height/2-40;
 let comidaX = 0
 let comidaY = 0
 
@@ -23,7 +23,7 @@ function graficarRectangulo(x, y, ancho, alto, color){
 
 function graficarGato(){
     graficarRectangulo(
-        canvas.height/2-40,canvas.height/2-40,ALTURA_GATO,ANCHO_GATO,"#c7803d"
+        gatoX,gatoY,ALTURA_GATO,ANCHO_GATO,"#c7803d"
     )
 
 }
@@ -36,4 +36,14 @@ function graficarComida(){
         ALTURA_COMIDA,
         "#905049"
     );
+}
+function limpiarCanva() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function moverIzquierda(){
+    gatoX = gatoX -10;
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
 }
