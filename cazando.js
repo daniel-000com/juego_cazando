@@ -76,7 +76,6 @@ function detectarColicion(){
         if (puntos >= 6)
         limpiarCanva();
         terminarJuego("¡Ganaste! Atrapaste 6 comidas.");
-        return; 
         }
 }
 
@@ -106,4 +105,19 @@ function restarTiempo(){
 function terminarJuego(mensaje) {
 clearInterval(intervaloTiempo);
 alert(mensaje);
+}
+
+function reiniciar(){
+    puntaje = 0;
+    tiempo = 10
+    intervaloTiempo ;
+    gatoX =canvas.width/2-40;
+    gatoY =canvas.height/2-40;
+    document.getElementById("puntos").textContent = puntaje;
+    document.getElementById("tiempo").textContent = tiempo;
+    clearInterval(intervaloTiempo);
+    limpiarCanva();
+    iniciarJuego();
+    
+    
 }
