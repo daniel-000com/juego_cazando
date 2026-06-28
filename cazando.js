@@ -11,10 +11,15 @@ let gatoY =canvas.height/2-40;
 let comidaX = 0
 let comidaY = 0
 let puntaje = 0
+let tiempo = 10
+let intervaloTiempo ;
 
 function iniciarJuego(){
+    tiempo;
     graficarGato();
     graficarComida();
+    restarTiempo();
+    intervaloTiempo = setInterval(restarTiempo, 1000);
 }
 
 function graficarRectangulo(x, y, ancho, alto, color){
@@ -68,8 +73,7 @@ function detectarColicion(){
         gatoY+ALTURA_GATO>comidaY && gatoY < comidaY+ALTURA_COMIDA ){
         aparecerComida();
         puntaje=puntaje +1;
-        mostrarSpam("puntos",puntaje);
-          alert("coliocion detectada!!")  
+        mostrarSpam("puntos",puntaje);  
         }
 }
 
@@ -85,4 +89,10 @@ function actualizarPantalla(){
     graficarComida();
     detectarColicion();
 
+}
+
+function restarTiempo(){
+    tiempo--;
+        mostrarSpam("tiempo",tiempo);
+        
 }
